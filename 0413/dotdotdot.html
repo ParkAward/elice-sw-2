@@ -1,0 +1,38 @@
+<html>
+    <body>
+        <p>JavaScript is Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam aperiam ipsam libero, esse illum optio soluta repellat aliquam officia ut, aspernatur veritatis magni fugiat possimus sunt officiis tempora dolore aut?
+        </p>
+    </body>
+    <script>
+        let t = document.querySelector('p');
+        if(t.textContent.length > 13){
+            let text = t.textContent;
+            let temp = text.slice(0,14); 
+            text = text.slice(13);
+            t.textContent = temp;
+
+            let sp_dot = document.createElement('span');
+            sp_dot.textContent=' ... ';
+            sp_dot.style.display='inline-block';
+            sp_dot.style.cursor='click';
+            sp_dot.style.backgroundColor='rgb(215,215,215)';
+            let sp_remain = document.createElement('span');
+            sp_remain.textContent=text;
+            sp_remain.addEventListener('mouseover', e=>{
+                e.target.style.color="orange";
+            })
+            sp_remain.style.display = 'none';
+
+            sp_dot.addEventListener('click', e=>{ 
+                sp_dot.style.display = 'none';
+                sp_remain.style.display = 'inline';
+            })
+    
+            
+            t.append(sp_dot);
+            t.append(sp_remain);
+
+        }
+
+    </script>
+</html>
