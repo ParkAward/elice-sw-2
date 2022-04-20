@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <script>
+            function setup() {
+                console.log('setup');
+                createCanvas(windowWidth, windowHeight);
+                background('#FF0000');
+                circle(100, 100, 100);
+            }
+
+            function draw(){
+                const callRandom = () => Math.floor(Math.random()*16).toString(16);
+                const callHex = () => '#'+callRandom()+callRandom()+callRandom()+callRandom()+callRandom()+callRandom();
+                console.log();
+                
+                fill(callHex,100);
+                circle(mouseX, mouseY, Math.random()*100+1);
+
+            }
+        </script>
+        
+        
+    </body>
+</html>
