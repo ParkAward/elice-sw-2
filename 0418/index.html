@@ -1,44 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <title>WEB - Welcome</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="style.css">
-        <script type="module">
-            import {dayNight, day} from './daynight.js';
-            function listener(evt){
-                if(evt.target.value === 'night'){
-                    dayNight('night');
-                    evt.target.value = 'day';
-                } else {
-                    dayNight('day');
-                    evt.target.value = 'night';
-                }
-            }
-            document.querySelector('#dayNightBtn').addEventListener('click', listener);
+        <script>
+            let topics = [
+                {id:1,title:'html',body:'html is ..'}, 
+                {id:2, title:'css', body:'css is ..'},
+                {id:3, title:'js', body:'js is ..'}
+            ]
         </script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script> -->
     </head>
     <body>
+        <h1><a href="index.html" onclick="
+            event.preventDefault();
+            document.querySelector('article').innerHTML = `<h2>Welcome</h2>Hello, WEB!`;    
+        ">WEB</a></h1>
+        <nav>
+            <ol></ol>
+        </nav>
+        <article>
+            <h2>Welcome</h2>
+            Hello, WEB
+        </article>
         <script>
-            console.log(2);
+            /*
+            function nav(){}
+            let nav = function(){}
+            */
+            let nav = ()=>{
+                let navTag = '';
+                for(let i=0; i<topics.length; i=i+1){
+                    navTag = navTag + `
+                        <li>
+                            <a href="/read/${topics[i].id}" id="${topics[i].id}" onclick="
+                                event.preventDefault();
+                                for(let i=0; i<topics.length; i++){
+                                    if(topics[i].id === Number(event.target.id)){
+                                        document.querySelector('article').innerHTML = '<h2>${topics[i].title}</h2>${topics[i].body}';
+                                        break;
+                                    }
+                                }
+                            ">
+                                ${topics[i].title}
+                            </a>
+                        </li>`;
+                }
+                document.querySelector('nav ol').innerHTML = navTag;
+                console.log(navTag);
+            }
+            nav();
         </script>
-        <input type="button" id="dayNightBtn" value="night" onclick="
-            debugger;
-        ">
-        <h1><a href="index.html">WEB</a></h1>
+        <style>
+            .p5Canvas{
+                position:absolute;
+                left:0;
+                top:0;
+                z-index:-1;
+            }
+        </style>
+        <!-- <script>
+            function setup() {
+            createCanvas(windowWidth, windowHeight);
+            }
 
-        <div id="container">
-            <ol>
-                <li><a href="1.html">html</a></li>
-                <li><a href="2.html">css</a></li>
-                <li><a href="3.html">javascript</a></li>
-            </ol>
-            <div>
-                <h2>Welcome</h2>
-                Hello, WEB!!!!!
-            </div>
-        </div>
-        
+            function draw() {
+                let r = Math.random()*255-100
+                let g = Math.random()*255-100
+                let b = Math.random()*255-100
+                fill(r, g, b);
+                circle(mouseX, mouseY, 100, 100);
+            }
+        </script> -->
     </body>
 </html>
